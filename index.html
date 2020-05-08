@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lanf="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>Memory Game</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <div class="extra">
+        <div id="score">Sua pontuação é: 0</div>
+        <div id="attempts">Tentativas: 0</div>
+        <div id="message"></div>
+        
+        <button class="button" onclick="newGame()">Novo Jogo</button>
+        <button class="button" onclick="redo()" id="redo">Refazer</button>
+        </div>
+
+        <section class="memory-game">
+          <div class="memory-card" data-name="Dog">
+            <img class="front-face" src="img/silhouette-3313484_960_720.png" alt="Dog">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Dog">
+            <img class="front-face" src="img/silhouette-3313484_960_720.png" alt="Dog">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Wolf">
+            <img class="front-face" src="img/wolf-159979_960_720.png" alt="Dog">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Wolf">
+            <img class="front-face" src="img/wolf-159979_960_720.png" alt="Dog">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Cat">
+            <img class="front-face" src="img/cat-1294968_960_720.png" alt="Cat">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Cat">
+            <img class="front-face" src="img/cat-1294968_960_720.png" alt="Cat">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+        <div class="memory-card" data-name="Bird">
+            <img class="front-face" src="img/bird-2069828_960_720.png" alt="Bird">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Bird">
+            <img class="front-face" src="img/bird-2069828_960_720.png" alt="Bird">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Tiger">
+            <img class="front-face" src="img/africa-1295198_960_720.png" alt="Tiger">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Tiger">
+            <img class="front-face" src="img/africa-1295198_960_720.png" alt="Tiger">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Snake">
+            <img class="front-face" src="img/animal-1298898_960_720.png" alt="Snake">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+    
+        <div class="memory-card" data-name="Snake">
+            <img class="front-face" src="img/animal-1298898_960_720.png" alt="Snake">
+            <img class="back-face" src="img/question-1243504_960_720.png" alt="Question Mark">
+        </div>
+        </section>
+
+        <script src="scripts.js"></script>
+    </body>
+</html>
