@@ -1,24 +1,33 @@
 const cards = document.querySelectorAll('.memory-card');
+cards.forEach(card => card.addEventListener('click', flipCard));
 
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
+var scoreNum = 0;
+var messageScore = "Sua pontuação é: ";
+var messageAttempts="Tentativas: ";
+var cardsOpen=[];
+var attemptsNum=0;
 
 function flipCard() {
-    if (lockBoard) return;
-    if (this === firstCard) return;
-    this.classList.add('flip');
+    if (lockBoard===true) {
+        return;
+    } else if (this === firstCard) {
+        return;
+    }else {
+        this.classList.add('flip');
+    }
 
+    //If hasFlippedCard= false
     if (!hasFlippedCard) {
-        // first click
         hasFlippedCard = true;
         firstCard = this;
-
         return;
     }
 
-    // second click
     secondCard = this;
+    lockBoard = true;
 
     checkForMatch();
 }
@@ -26,23 +35,39 @@ function flipCard() {
 function checkForMatch() {
     let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
 
-    isMatch ? disableCards() : unflipCards();
+    if (isMatch===true){
+        disableCards();
+        score();
+    }
+    unflipCards();
+    attempts();
+}
+
+function score() {
+    scoreNum=++scoreNum;
+    document.getElementById("score").innerText= messageScore + scoreNum;
+    if (scoreNum===6){
+        document.getElementById("message").innerText= "Parabéns brother! Você venceu!";
+    }
+}
+
+function attempts(){
+    ++attemptsNum;
+    document.getElementById("attempts").innerText= messageAttempts+ attemptsNum;
 }
 
 function disableCards() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
-
+    cardsOpen.push(firstCard);
+    cardsOpen.push(secondCard);
+    firstCard.removeEventListener('click',flipCard);
+    secondCard.removeEventListener('click',flipCard);
     resetBoard();
 }
 
 function unflipCards() {
-    lockBoard = true;
-
     setTimeout(() => {
         firstCard.classList.remove('flip');
         secondCard.classList.remove('flip');
-
         resetBoard();
     }, 500);
 }
@@ -52,12 +77,35 @@ function resetBoard() {
     [firstCard, secondCard] = [null, null];
 }
 
+function redo() {
+    resetBoard();
+     for (var i = cardsOpen.length - 1; i >= 0; i--) {
+         cardsOpen[i].classList.remove("flip");
+         const cards = document.querySelectorAll('.memory-card');
+         cards.forEach(card => card.addEventListener('click', flipCard));
+     }
+     scoreNum = 0;
+     document.getElementById("score").innerText= messageScore + scoreNum;
+ 
+    attemptsNum=0;
+     document.getElementById("attempts").innerText= messageAttempts+ attemptsNum;
+ 
+     document.getElementById("message").innerText="";
+ }
+
+function newGame(){
+    (function shuffle() {
+        cards.forEach(card => {
+            let ramdomPos = Math.ceil(Math.random() * 12);
+            card.style.order = ramdomPos;
+        });
+    })();
+    redo()
+}
+
 (function shuffle() {
     cards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 12);
         card.style.order = randomPos;
     });
 })();
-
-cards.forEach(card => card.addEventListener('click', flipCard));
-
